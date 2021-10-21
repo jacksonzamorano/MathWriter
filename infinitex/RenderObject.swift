@@ -41,20 +41,46 @@ h1 {
     height: auto;
     width: auto;
     margin: 0;
-    font-size: 300px;
+    font-size: 200px;
     padding: \(RenderObject.hPadding) \(RenderObject.wPadding);
 }
 body, html {
     margin: 0;
     padding:0;
-    background-color: #eeeeee;
 }
     </style>
 """
     
+    private let whiteMode = """
+        body, html {
+            background-color: #ffffff;
+        }
+        svg, path, fill {
+            color: black;
+        }
+    """
+    
+    private let lightMode = """
+        body, html {
+            background-color: #eeeeee;
+        }
+        svg, path, fill {
+            color: black;
+        }
+    """
+    
     private let darkMode = """
         body, html {
             background-color: #232323 !important;
+        }
+        svg, path, fill {
+            color: white;
+        }
+    """
+    
+    private let blackMode = """
+        body, html {
+            background-color: #000000 !important;
         }
         svg, path, fill {
             color: white;
@@ -84,10 +110,22 @@ body, html {
     
     public func html(colorMode: Int = 0) -> String {
         var h = script1 + script2 + "<h1>$\(_latexConversion)$</h1>" + js
-        if colorMode == 0 { h += darkModeConditional() }
-        else if colorMode == 2 { h += darkModeStatic() }
+        if colorMode == 0 { h += lightDarkAutoMode() }
+        else if colorMode == 1 { h += whiteBlackAutoMode() }
+        else if colorMode == 2 { h += modeStatic(mode: whiteMode) }
+        else if colorMode == 3 { h += modeStatic(mode: lightMode) }
+        else if colorMode == 4 { h += modeStatic(mode: darkMode) }
+        else if colorMode == 5 { h += modeStatic(mode: blackMode) }
         print(h)
         return h
+    }
+
+    private func modeStatic(mode: String) -> String {
+        return """
+        <style>
+            \(mode)
+        </style>
+        """
     }
     
     private func darkModeStatic() -> String {
@@ -97,11 +135,22 @@ body, html {
         </style>
         """
     }
-    private func darkModeConditional() -> String {
+    private func lightDarkAutoMode() -> String {
         return """
         <style>
+        \(lightMode)
         @media (prefers-color-scheme: dark) {
             \(darkMode)
+        }
+        </style>
+        """
+    }
+    private func whiteBlackAutoMode() -> String {
+        return """
+        <style>
+        \(whiteMode)
+        @media (prefers-color-scheme: dark) {
+            \(blackMode)
         }
         </style>
         """

@@ -4,7 +4,7 @@ import WebKit
 class WebView: NSObject, ObservableObject, WKNavigationDelegate {
     
     let webView = WKWebView()
-    @Published var latexCode: String = ""
+    @AppStorage("latexCode") var latexCode: String = ""
     @Published var image:NSImage = NSImage(named: "Icon Simple")!
     @AppStorage("colorMode") var colorMode: Int = 0
     

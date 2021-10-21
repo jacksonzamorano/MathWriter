@@ -17,6 +17,9 @@ struct infinitexApp: App {
             AppScene().environmentObject(renderer)
         }.commands {
             CommandGroup(replacing: CommandGroupPlacement.newItem) {
+                Button("New Text") {
+                    renderer.latexCode = ""
+                }.keyboardShortcut("n")
                 Button("Generate") {
                     renderer.generate()
                 }.keyboardShortcut(.init(.return, modifiers: .command))
@@ -45,21 +48,39 @@ struct infinitexApp: App {
                 Button {
                     self.renderer.colorMode = 0
                 } label: {
-                    Text("Auto")
+                    Text("Auto (Light/Dark)")
                 }
                 .keyboardShortcut("1")
                 Button {
                     self.renderer.colorMode = 1
                 } label: {
-                    Text("Light")
+                    Text("Auto (White/Black)")
                 }
                 .keyboardShortcut("2")
                 Button {
                     self.renderer.colorMode = 2
                 } label: {
-                    Text("Dark")
+                    Text("White")
                 }
                 .keyboardShortcut("3")
+                Button {
+                    self.renderer.colorMode = 3
+                } label: {
+                    Text("Light")
+                }
+                .keyboardShortcut("4")
+                Button {
+                    self.renderer.colorMode = 4
+                } label: {
+                    Text("Dark")
+                }
+                .keyboardShortcut("5")
+                Button {
+                    self.renderer.colorMode = 5
+                } label: {
+                    Text("Black")
+                }
+                .keyboardShortcut("6")
             }
         }
         .windowToolbarStyle(UnifiedCompactWindowToolbarStyle(showsTitle: false))

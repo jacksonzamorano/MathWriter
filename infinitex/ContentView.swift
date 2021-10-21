@@ -4,8 +4,6 @@ import Combine
 
 struct AppScene: View {
     
-    @State var latexCode: String = "\\infty"
-    @State var htmlString: String = "<h1>Test</h1>"
     @EnvironmentObject var renderer:WebView
     
     var body: some View {
@@ -23,18 +21,22 @@ struct AppScene: View {
                 Image(nsImage: renderer.image)
                     .resizable()
                     .scaledToFit()
+                    .cornerRadius(5)
                     .frame(height: 150)
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 30))
                     .onDrag {
                         let fileURL = self.renderer.write()
                         let provider = NSItemProvider(contentsOf: fileURL)
                         return provider!
                     }
                 Picker("Color Mode", selection: $renderer.colorMode) {
-                    Text("Auto").tag(0)
-                    Text("Light").tag(1)
-                    Text("Dark").tag(2)
-                }.frame(width: 200)
+                    Text("Auto (Light/Dark)").tag(0)
+                    Text("Auto (White/Black)").tag(1)
+                    Text("White").tag(2)
+                    Text("Light").tag(3)
+                    Text("Dark").tag(4)
+                    Text("Black").tag(5)
+                }.frame(width: 250)
                 Text("Export ⌘+E").foregroundColor(Color("FadedColor"))
                 Text("or drag + drop").foregroundColor(Color("FadedColor"))
             }.frame(minWidth: 300)
