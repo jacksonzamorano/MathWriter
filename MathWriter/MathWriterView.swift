@@ -110,7 +110,16 @@ struct MathWriterView: View {
                 }.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
             }
         }
-        
+        .userActivity("com.flare.mathwriter.launch", element: URL(string: "https://google.com")!) { url, activity in
+            activity.addUserInfoEntries(from: ["math": renderer.latexCode, "colorMode": renderer.colorMode])
+            print("user activity issued")
+        }
+        .onContinueUserActivity("com.flare.mathwriter.launch") { activity in
+            let math = activity.userInfo!["math"] as! String
+            let color = activity.userInfo!["colorMode"] as! Int
+            renderer.latexCode = math
+            renderer.colorMode = color
+        }
     }
 }
 
