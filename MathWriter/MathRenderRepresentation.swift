@@ -1,6 +1,6 @@
 import Foundation
 
-class RenderObject {
+class MathRenderRepresentation {
     
     public static let wPadding = 40;
     public static let hPadding = 20;
@@ -42,7 +42,7 @@ h1 {
     width: auto;
     margin: 0;
     font-size: 200px;
-    padding: \(RenderObject.hPadding) \(RenderObject.wPadding);
+    padding: \(MathRenderRepresentation.hPadding) \(MathRenderRepresentation.wPadding);
 }
 body, html {
     margin: 0;

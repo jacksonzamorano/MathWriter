@@ -24,7 +24,7 @@ public struct SettingsView: View {
         TabView {
             VStack {
                 VStack(alignment: .leading) {
-                    Text("infinitex works by generating images using your Mac's native WebKit engine. While it is power efficient, generating images quickly can have an effect on power consumption. You can adjust these settings here.")
+                    Text("MathWriter works by generating images using your Mac's native WebKit engine. While it is power efficient, generating images quickly can have an effect on power consumption. You can adjust these settings here.")
                         .foregroundColor(Color("FadedColor"))
                         .fixedSize(horizontal: false, vertical: true)
                 }

@@ -1,7 +1,7 @@
 import SwiftUI
 import WebKit
 
-class WebView: NSObject, ObservableObject, WKNavigationDelegate {
+class MathRenderer: NSObject, ObservableObject, WKNavigationDelegate {
     
     let webView = WKWebView()
     @AppStorage("latexCode") var latexCode: String = ""
@@ -19,14 +19,14 @@ class WebView: NSObject, ObservableObject, WKNavigationDelegate {
     
     public func generate() {
         if latexCode != "" && latexCode != " " {
-            webView.loadHTMLString(RenderObject(withContents: latexCode).html(colorMode: colorMode), baseURL: URL(string: "http://test.com")!)
+            webView.loadHTMLString(MathRenderRepresentation(withContents: latexCode).html(colorMode: colorMode), baseURL: URL(string: "http://test.com")!)
         } else {
             image = NSImage(named: "Icon Simple")!
         }
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        webView.evaluateJavaScript(RenderObject.evalCode) { res, error in
+        webView.evaluateJavaScript(MathRenderRepresentation.evalCode) { res, error in
             let data = res as! [NSNumber]
 
             let width = Int(truncating: data[0])

@@ -8,21 +8,21 @@
 import SwiftUI
 
 @main
-struct infinitexApp: App {
+struct MathWriterApp: App {
     
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @State var renderer = WebView()
+    @State var renderer = MathRenderer()
     @AppStorage("performanceMode") var performanceMode = 2
     
     var body: some Scene {
         WindowGroup {
-            AppScene().environmentObject(renderer)
+            MathWriterView().environmentObject(renderer)
         }.commands {
             CommandGroup(replacing: CommandGroupPlacement.newItem) {
-                Button("New Text") {
+                Button("Clear") {
                     renderer.latexCode = ""
                 }.keyboardShortcut("n")
-                Button("Open") {
+                Button("Open...") {
                     renderer.generate()
                     let url = renderer.write()
                     NSWorkspace.shared.open(url)
@@ -43,7 +43,7 @@ struct infinitexApp: App {
                 Button("Generate") {
                     renderer.generate()
                 }.keyboardShortcut(.init(.return, modifiers: .command))
-                Button("Export") {
+                Button("Export...") {
                     let sourceURL = renderer.write()
                     let panel = NSSavePanel()
                     panel.canCreateDirectories = true
@@ -55,6 +55,11 @@ struct infinitexApp: App {
                         }
                     }
                 }.keyboardShortcut("e")
+            }
+            CommandGroup(replacing: .help) {
+                Button("Send Feedback") {
+                    NSWorkspace.shared.open(URL(string: "mailto:jackson@flareapplications.com")!)
+                }
             }
             CommandGroup(replacing: .textFormatting) {
                 Text("Color Options")

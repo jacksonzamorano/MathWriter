@@ -2,9 +2,9 @@ import SwiftUI
 import WebKit
 import Combine
 
-struct AppScene: View {
+struct MathWriterView: View {
     
-    @EnvironmentObject var renderer:WebView
+    @EnvironmentObject var renderer:MathRenderer
     @State var workItem: DispatchWorkItem?
     @AppStorage("performanceMode") var performanceMode = 0
     @AppStorage("performanceMessagesSuppresed") var messageSuppressed = false
@@ -120,7 +120,7 @@ protocol AppSceneCommand {
 
 struct AppScene_Previews: PreviewProvider {
     static var previews: some View {
-        AppScene().environmentObject(WebView())
+        MathWriterView().environmentObject(MathRenderer())
     }
 }
 
