@@ -50,6 +50,15 @@ body, html {
     </style>
 """
     
+    private let darkMode = """
+        body, html {
+            background-color: #232323;
+        }
+        svg, path, fill {
+            color: white;
+        }
+    """
+    
     private let api = """
         <script>
             func getWidth() {
@@ -70,8 +79,28 @@ body, html {
         _latexConversion = contents
     }
     
-    public func html() -> String {
-        return script1 + script2 + "<h1>$\(_latexConversion)$</h1>" + js
+    public func html(colorMode: Int = 0) -> String {
+        var h = script1 + script2 + "<h1>$\(_latexConversion)$</h1>" + js
+        if colorMode == 0 { h += darkModeConditional() }
+        else if colorMode == 2 { h += darkModeStatic() }
+        print(h)
+        return h
     }
     
+    private func darkModeStatic() -> String {
+        return """
+        <style>
+            \(darkMode)
+        </style>
+        """
+    }
+    private func darkModeConditional() -> String {
+        return """
+        <style>
+        @media (prefers-color-scheme: dark) {
+            \(darkMode)
+        }
+        </style>
+        """
+    }
 }

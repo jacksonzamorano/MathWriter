@@ -4,7 +4,9 @@ import WebKit
 class WebView: NSObject, ObservableObject, WKNavigationDelegate {
     
     let webView = WKWebView()
+    @Published var latexCode: String = ""
     @Published var image:NSImage = NSImage(systemSymbolName: "infinity.circle.fill", accessibilityDescription: "image")!
+    @AppStorage("colorMode") var colorMode: Int = 0
     
     override init() {
         super.init()
@@ -12,8 +14,8 @@ class WebView: NSObject, ObservableObject, WKNavigationDelegate {
         self.webView.frame = CGRect(x: 0, y: 0, width: 10000, height: 10000)
     }
     
-    public func generate(htmlString: String) {
-        webView.loadHTMLString(RenderObject(withContents: htmlString).html(), baseURL: URL(string: "http://test.com")!)
+    public func generate() {
+        webView.loadHTMLString(RenderObject(withContents: latexCode).html(colorMode: colorMode), baseURL: URL(string: "http://test.com")!)
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -30,6 +32,14 @@ class WebView: NSObject, ObservableObject, WKNavigationDelegate {
                 self.image = img!
             }
         }
+    }
+    
+    public func write() -> URL {
+        let fileUrl = FileManager.default.temporaryDirectory.appendingPathComponent("output.png")
+        let data = self.image.tiffRepresentation!
+        let pngData = NSBitmapImageRep(data: data)?.representation(using: .png, properties: [:])
+        try! pngData?.write(to: fileUrl)
+        return fileUrl
     }
     
 }
