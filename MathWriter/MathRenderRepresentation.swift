@@ -5,8 +5,7 @@ class MathRenderRepresentation {
     public static let wPadding = 40;
     public static let hPadding = 20;
     
-    private let script1 = "<script src=\"https://polyfill.io/v3/polyfill.min.js?features=es6\"></script>"
-    private let script2 = """
+    private let script = """
     <script>
         window.MathJax = {
             tex: {
@@ -16,13 +15,6 @@ class MathRenderRepresentation {
                 fontCache: 'global'
             }
         };
-
-        (function () {
-          var script = document.createElement('script');
-          script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-          script.async = true;
-          document.head.appendChild(script);
-        })();
     </script>
     """
     
@@ -109,7 +101,7 @@ body, html {
     }
     
     public func html(colorMode: Int = 0) -> String {
-        var h = script1 + script2 + "<h1>$\(_latexConversion)$</h1>" + js
+        var h = script + mathJaxLib() + "<h1>$\(_latexConversion)$</h1>" + js
         if colorMode == 0 { h += lightDarkAutoMode() }
         else if colorMode == 1 { h += whiteBlackAutoMode() }
         else if colorMode == 2 { h += modeStatic(mode: whiteMode) }
@@ -119,6 +111,12 @@ body, html {
         return h
     }
 
+    private func mathJaxLib() -> String {
+        let bundle = Bundle.main.path(forResource: "MathJax", ofType: "js")!
+        let data = try! String(contentsOfFile: bundle)
+        return "<script>\(data)</script>"
+    }
+    
     private func modeStatic(mode: String) -> String {
         return """
         <style>

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1A2DEB9B271D412D002151A5"
-               BuildableName = "infinitex.app"
+               BuildableName = "MathWriter.app"
                BlueprintName = "MathWriter"
                ReferencedContainer = "container:MathWriter.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A2DEB9B271D412D002151A5"
-            BuildableName = "infinitex.app"
+            BuildableName = "MathWriter.app"
             BlueprintName = "MathWriter"
             ReferencedContainer = "container:MathWriter.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A2DEB9B271D412D002151A5"
-            BuildableName = "infinitex.app"
+            BuildableName = "MathWriter.app"
             BlueprintName = "MathWriter"
             ReferencedContainer = "container:MathWriter.xcodeproj">
          </BuildableReference>

@@ -15,6 +15,7 @@
 		1A9B92DB2721EB17007B700A /* WebRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B92D42721EB17007B700A /* WebRenderView.swift */; };
 		1A9B92DC2721EB17007B700A /* MathWriterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B92D52721EB17007B700A /* MathWriterView.swift */; };
 		1A9B92DF2721EBA9007B700A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B92DE2721EBA9007B700A /* Credits.rtf */; };
+		1AA668A32721F6C30097955B /* MathJax.js in Resources */ = {isa = PBXBuildFile; fileRef = 1AA668A22721F6C30097955B /* MathJax.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		1A9B92D52721EB17007B700A /* MathWriterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathWriterView.swift; sourceTree = "<group>"; };
 		1A9B92DD2721EB59007B700A /* MathWriter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MathWriter.entitlements; sourceTree = "<group>"; };
 		1A9B92DE2721EBA9007B700A /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		1AA668A22721F6C30097955B /* MathJax.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = MathJax.js; path = ../../../Downloads/MathJax.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				1A9B92D52721EB17007B700A /* MathWriterView.swift */,
 				1A9B92D42721EB17007B700A /* WebRenderView.swift */,
 				1A9B92D22721EB17007B700A /* MathRenderRepresentation.swift */,
+				1AA668A22721F6C30097955B /* MathJax.js */,
 				1A9B92CF2721EB17007B700A /* Assets.xcassets */,
 				1A9B92DD2721EB59007B700A /* MathWriter.entitlements */,
 				1A9B92D02721EB17007B700A /* Preview Content */,
@@ -141,6 +144,7 @@
 			files = (
 				1A9B92D82721EB17007B700A /* Preview Assets.xcassets in Resources */,
 				1A9B92DF2721EBA9007B700A /* Credits.rtf in Resources */,
+				1AA668A32721F6C30097955B /* MathJax.js in Resources */,
 				1A9B92D72721EB17007B700A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,7 +290,7 @@
 				CODE_SIGN_ENTITLEMENTS = MathWriter/MathWriter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MathWriter/Preview Content\"";
 				DEVELOPMENT_TEAM = 2C8TB644SU;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -315,7 +319,7 @@
 				CODE_SIGN_ENTITLEMENTS = MathWriter/MathWriter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MathWriter/Preview Content\"";
 				DEVELOPMENT_TEAM = 2C8TB644SU;
 				ENABLE_HARDENED_RUNTIME = YES;
