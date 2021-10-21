@@ -13,6 +13,7 @@
 		1A2DEBA7271D412E002151A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A2DEBA6271D412E002151A5 /* Preview Assets.xcassets */; };
 		1A2DEBAF271D42A4002151A5 /* WebRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2DEBAE271D42A4002151A5 /* WebRenderView.swift */; };
 		1A2DEBB1271D4702002151A5 /* RenderObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2DEBB0271D4702002151A5 /* RenderObject.swift */; };
+		1AC4AFF32721D44D00A4B29D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC4AFF22721D44D00A4B29D /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		1A2DEBA8271D412E002151A5 /* infinitex.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = infinitex.entitlements; sourceTree = "<group>"; };
 		1A2DEBAE271D42A4002151A5 /* WebRenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRenderView.swift; sourceTree = "<group>"; };
 		1A2DEBB0271D4702002151A5 /* RenderObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderObject.swift; sourceTree = "<group>"; };
+		1AC4AFF22721D44D00A4B29D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				1A2DEBA1271D412D002151A5 /* ContentView.swift */,
 				1A2DEBAE271D42A4002151A5 /* WebRenderView.swift */,
 				1A2DEBB0271D4702002151A5 /* RenderObject.swift */,
+				1AC4AFF22721D44D00A4B29D /* SettingsView.swift */,
 				1A2DEBA3271D412E002151A5 /* Assets.xcassets */,
 				1A2DEBA8271D412E002151A5 /* infinitex.entitlements */,
 				1A2DEBA5271D412E002151A5 /* Preview Content */,
@@ -145,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AC4AFF32721D44D00A4B29D /* SettingsView.swift in Sources */,
 				1A2DEBB1271D4702002151A5 /* RenderObject.swift in Sources */,
 				1A2DEBA2271D412D002151A5 /* ContentView.swift in Sources */,
 				1A2DEBA0271D412D002151A5 /* infinitexApp.swift in Sources */,

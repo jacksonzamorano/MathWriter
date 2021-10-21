@@ -116,7 +116,6 @@ body, html {
         else if colorMode == 3 { h += modeStatic(mode: lightMode) }
         else if colorMode == 4 { h += modeStatic(mode: darkMode) }
         else if colorMode == 5 { h += modeStatic(mode: blackMode) }
-        print(h)
         return h
     }
 
@@ -154,5 +153,19 @@ body, html {
         }
         </style>
         """
+    }
+}
+
+class RefreshInterval {
+    static func forPerformanceMode(mode: Int) -> DispatchTime {
+        if mode == 1 {
+            return .now() + 1
+        } else if mode == 2 {
+            return .now() + 0.2
+        } else if mode == 3 {
+            return .now() + 0.01
+        } else {
+            return .now()
+        }
     }
 }

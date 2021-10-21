@@ -10,7 +10,9 @@ import SwiftUI
 @main
 struct infinitexApp: App {
     
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State var renderer = WebView()
+    @AppStorage("performanceMode") var performanceMode = 2
     
     var body: some Scene {
         WindowGroup {
@@ -20,15 +22,27 @@ struct infinitexApp: App {
                 Button("New Text") {
                     renderer.latexCode = ""
                 }.keyboardShortcut("n")
-                Button("Generate") {
-                    renderer.generate()
-                }.keyboardShortcut(.init(.return, modifiers: .command))
                 Button("Open") {
                     renderer.generate()
                     let url = renderer.write()
                     NSWorkspace.shared.open(url)
                 }
                 .keyboardShortcut("o")
+            }
+            CommandGroup(after: CommandGroupPlacement.appSettings) {
+                Button("Toggle Low Power Mode") {
+                    if performanceMode == 0 {
+                        performanceMode = 2
+                    } else {
+                        performanceMode = 0
+                    }
+                }.keyboardShortcut(KeyboardShortcut("b", modifiers: [.shift, .command]))
+            }
+            CommandGroup(after: .newItem) {
+                Divider()
+                Button("Generate") {
+                    renderer.generate()
+                }.keyboardShortcut(.init(.return, modifiers: .command))
                 Button("Export") {
                     let sourceURL = renderer.write()
                     let panel = NSSavePanel()
@@ -38,13 +52,13 @@ struct infinitexApp: App {
                         if res.rawValue == NSApplication.ModalResponse.OK.rawValue {
                             let destURL = panel.url!
                             try! FileManager.default.copyItem(at: sourceURL, to: destURL)
-                        } else {
-                            print("save canceled")
                         }
                     }
                 }.keyboardShortcut("e")
             }
             CommandGroup(replacing: .textFormatting) {
+                Text("Color Options")
+                Divider()
                 Button {
                     self.renderer.colorMode = 0
                 } label: {
@@ -84,5 +98,30 @@ struct infinitexApp: App {
             }
         }
         .windowToolbarStyle(UnifiedCompactWindowToolbarStyle(showsTitle: false))
+        
+        #if os(macOS)
+        Settings {
+            SettingsView()
+        }
+        #endif
+    }
+
+}
+
+class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        NSWindow.allowsAutomaticWindowTabbing = false
+
+        if let mainMenu = NSApp .mainMenu {
+            DispatchQueue.main.async {
+                if let edit = mainMenu.items.first(where: { $0.title == "Edit"}) {
+                    mainMenu.removeItem(edit);
+                }
+                if let edit = mainMenu.items.first(where: { $0.title == "View"}) {
+                    mainMenu.removeItem(edit);
+                }
+            }
+        }
+
     }
 }

@@ -12,6 +12,9 @@ class WebView: NSObject, ObservableObject, WKNavigationDelegate {
         super.init()
         self.webView.navigationDelegate = self
         self.webView.frame = CGRect(x: 0, y: 0, width: 10000, height: 10000)
+        if latexCode != "" && latexCode != " " {
+            self.generate()
+        }
     }
     
     public func generate() {
@@ -23,7 +26,6 @@ class WebView: NSObject, ObservableObject, WKNavigationDelegate {
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("finished navigation")
         webView.evaluateJavaScript(RenderObject.evalCode) { res, error in
             let data = res as! [NSNumber]
 
