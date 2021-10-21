@@ -11,20 +11,25 @@ struct AppScene: View {
     var body: some View {
         HStack {
             VStack {
-                TextField("LaTeX", text: $renderer.latexCode).textFieldStyle(PlainTextFieldStyle())
+                TextEditor(text: $renderer.latexCode)
+                    .font(.system(size: 20, weight: .regular, design: .monospaced))
+                    .textFieldStyle(PlainTextFieldStyle())
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                Button("Generate") {
-                    renderer.generate()
-                }
-                
-            }.padding(EdgeInsets(top: 50, leading: 30, bottom: 50, trailing: 30)).frame(width: 500, height: 200)
+                    .padding(30)
+            }
+            .frame(width: 500)
+            .background(Color(red: 0.118, green: 0.118, blue: 0.118))
             VStack(alignment: .center) {
-                Image(nsImage: renderer.image).onDrag {
-                    let fileURL = self.renderer.write()
-                    let provider = NSItemProvider(contentsOf: fileURL)
-                    return provider!
-                }
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                Image(nsImage: renderer.image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 150)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                    .onDrag {
+                        let fileURL = self.renderer.write()
+                        let provider = NSItemProvider(contentsOf: fileURL)
+                        return provider!
+                    }
                 Picker("Color Mode", selection: $renderer.colorMode) {
                     Text("Auto").tag(0)
                     Text("Light").tag(1)
@@ -32,7 +37,16 @@ struct AppScene: View {
                 }.frame(width: 200)
                 Text("Export ⌘+E").foregroundColor(Color("FadedColor"))
                 Text("or drag + drop").foregroundColor(Color("FadedColor"))
-            }.frame(width: 300)
+            }.frame(minWidth: 300)
+        }.toolbar {
+            ToolbarItem {
+                Button {
+                    self.renderer.generate()
+                } label: {
+                    Image(systemName: "play")
+                }
+
+            }
         }
     }
 }

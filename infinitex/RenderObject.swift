@@ -41,23 +41,26 @@ h1 {
     height: auto;
     width: auto;
     margin: 0;
+    font-size: 300px;
     padding: \(RenderObject.hPadding) \(RenderObject.wPadding);
 }
 body, html {
     margin: 0;
     padding:0;
+    background-color: #eeeeee;
 }
     </style>
 """
     
     private let darkMode = """
         body, html {
-            background-color: #232323;
+            background-color: #232323 !important;
         }
         svg, path, fill {
             color: white;
         }
     """
+
     
     private let api = """
         <script>

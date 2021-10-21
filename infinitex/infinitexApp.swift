@@ -20,6 +20,12 @@ struct infinitexApp: App {
                 Button("Generate") {
                     renderer.generate()
                 }.keyboardShortcut(.init(.return, modifiers: .command))
+                Button("Open") {
+                    renderer.generate()
+                    let url = renderer.write()
+                    NSWorkspace.shared.open(url)
+                }
+                .keyboardShortcut("o")
                 Button("Export") {
                     let sourceURL = renderer.write()
                     let panel = NSSavePanel()
@@ -36,8 +42,26 @@ struct infinitexApp: App {
                 }.keyboardShortcut("e")
             }
             CommandGroup(replacing: .textFormatting) {
-                EmptyView()
+                Button {
+                    self.renderer.colorMode = 0
+                } label: {
+                    Text("Auto")
+                }
+                .keyboardShortcut("1")
+                Button {
+                    self.renderer.colorMode = 1
+                } label: {
+                    Text("Light")
+                }
+                .keyboardShortcut("2")
+                Button {
+                    self.renderer.colorMode = 2
+                } label: {
+                    Text("Dark")
+                }
+                .keyboardShortcut("3")
             }
         }
+        .windowToolbarStyle(UnifiedCompactWindowToolbarStyle(showsTitle: false))
     }
 }

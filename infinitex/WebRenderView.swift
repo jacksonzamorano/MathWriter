@@ -5,7 +5,7 @@ class WebView: NSObject, ObservableObject, WKNavigationDelegate {
     
     let webView = WKWebView()
     @Published var latexCode: String = ""
-    @Published var image:NSImage = NSImage(systemSymbolName: "infinity.circle.fill", accessibilityDescription: "image")!
+    @Published var image:NSImage = NSImage(named: "Icon Simple")!
     @AppStorage("colorMode") var colorMode: Int = 0
     
     override init() {
@@ -15,7 +15,11 @@ class WebView: NSObject, ObservableObject, WKNavigationDelegate {
     }
     
     public func generate() {
-        webView.loadHTMLString(RenderObject(withContents: latexCode).html(colorMode: colorMode), baseURL: URL(string: "http://test.com")!)
+        if latexCode != "" && latexCode != " " {
+            webView.loadHTMLString(RenderObject(withContents: latexCode).html(colorMode: colorMode), baseURL: URL(string: "http://test.com")!)
+        } else {
+            image = NSImage(named: "Icon Simple")!
+        }
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
